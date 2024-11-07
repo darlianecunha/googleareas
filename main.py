@@ -1,5 +1,6 @@
 import streamlit as st
 from scholarly import scholarly
+import time
 
 def buscar_areas_de_pesquisa_google_academico(nome_pesquisador):
     try:
@@ -21,14 +22,21 @@ def buscar_areas_de_pesquisa_google_academico(nome_pesquisador):
 
 # Interface Streamlit
 st.title("Busca de Áreas de Pesquisa no Google Acadêmico")
-nome_pesquisador = st.text_input("Digite o nome do pesquisador no Google Acadêmico:")
+
+# Entrada de múltiplos nomes de pesquisadores separados por vírgulas
+nomes_pesquisadores = st.text_input("Digite os nomes dos pesquisadores no Google Acadêmico, separados por vírgulas:")
 
 if st.button("Buscar"):
-    if nome_pesquisador:
+    if nomes_pesquisadores:
         with st.spinner("Buscando..."):
-            areas_de_pesquisa = buscar_areas_de_pesquisa_google_academico(nome_pesquisador)
-        st.subheader("Áreas de pesquisa encontradas:")
-        for area in areas_de_pesquisa:
-            st.write(f"- {area}")
+            # Divide a lista de nomes e remove espaços extras
+            nomes_lista = [nome.strip() for nome in nomes_pesquisadores.split(",")]
+            for nome in nomes_lista:
+                st.subheader(f"Áreas de pesquisa para: {nome}")
+                areas_de_pesquisa = buscar_areas_de_pesquisa_google_academico(nome)
+                for area in areas_de_pesquisa:
+                    st.write(f"- {area}")
+                # Adiciona um intervalo de 2 segundos entre as buscas
+                time.sleep(2)
     else:
-        st.warning("Por favor, insira o nome do pesquisador.")
+        st.warning("Por favor, insira pelo menos um nome de pesquisador.")
