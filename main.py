@@ -21,7 +21,7 @@ def buscar_areas_de_pesquisa_google_academico(nome_pesquisador):
         return [f"Erro ao buscar áreas de pesquisa: {e}"]
 
 # Interface Streamlit
-st.title("Busca de Áreas de Pesquisa no Google Acadêmico")
+st.markdown("<h1 style='color: navy;'>Busca de Áreas de Interesse dos Pesquisadores no Google Acadêmico</h1>", unsafe_allow_html=True)
 
 # Entrada de múltiplos nomes de pesquisadores separados por vírgulas
 nomes_pesquisadores = st.text_input("Digite os nomes dos pesquisadores no Google Acadêmico, separados por vírgulas:")
@@ -41,5 +41,6 @@ if st.button("Buscar"):
     else:
         st.warning("Por favor, insira pelo menos um nome de pesquisador.")
 
-# Adiciona a assinatura no final
-st.write("Ferramenta desenvolvida por Darliane Cunha.")
+# Adiciona a assinatura no final em azul-marinho
+st.markdown("<p style='color: navy;'>Ferramenta desenvolvida por: Darliane Cunha</p>", unsafe_allow_html=True)
+
