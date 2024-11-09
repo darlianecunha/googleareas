@@ -40,3 +40,6 @@ if st.button("Buscar"):
                 time.sleep(2)
     else:
         st.warning("Por favor, insira pelo menos um nome de pesquisador.")
+
+# Adiciona a assinatura no final
+st.write("Ferramenta desenvolvida por Darliane Cunha.")
